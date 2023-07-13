@@ -14,21 +14,54 @@
                     "targetPort": "2_in"
                 },
                 {
-                    "id": "port_2_to_port_1",
-                    "sourceNode": "2",
-                    "sourcePort": "2_out",
-                    "targetNode": "1",
-                    "targetPort": "1_in"
+                    "id": "port_0_to_port_4",
+                    "sourceNode": "0",
+                    "sourcePort": "0_out",
+                    "targetNode": "4",
+                    "targetPort": "4_in"
                 },
                 {
-                    "id": "port_2_to_port_3",
+                    "id": "port_0_to_port_5",
+                    "sourceNode": "0",
+                    "sourcePort": "0_out",
+                    "targetNode": "5",
+                    "targetPort": "5_in"
+                },
+                {
+                    "id": "port_4_to_port_7",
+                    "sourceNode": "4",
+                    "sourcePort": "4_out",
+                    "targetNode": "7",
+                    "targetPort": "7_in"
+                },
+                {
+                    "id": "port_5_to_port_7",
+                    "sourceNode": "5",
+                    "sourcePort": "5_out",
+                    "targetNode": "7",
+                    "targetPort": "7_in"
+                },
+                {
+                    "id": "port_2_to_port_7",
                     "sourceNode": "2",
                     "sourcePort": "2_out",
-                    "targetNode": "3",
-                    "targetPort": "3_in"
+                    "targetNode": "7",
+                    "targetPort": "7_in"
+                },
+                {
+                    "conditions": [
+                        {
+                            "index": 0
+                        }
+                    ],
+                    "id": "port_7_to_port_8",
+                    "sourceNode": "7",
+                    "sourcePort": "7_out",
+                    "targetNode": "8",
+                    "targetPort": "8_in"
                 }
             ],
-            "hash": "4a14b0efe52271c779fb7e554fde46e4a1474b8c",
+            "hash": "971bc5569fb0c0c3b5569a10b768ab5c7f64857a",
             "nodes": {
                 "0": {
                     "data": {
@@ -44,7 +77,7 @@
                     "type": "start",
                     "warnings": {},
                     "x": 1000,
-                    "y": 419.99999999999966
+                    "y": 419.99999999999955
                 },
                 "1": {
                     "data": {
@@ -59,8 +92,8 @@
                     "id": "1",
                     "type": "end",
                     "warnings": {},
-                    "x": 1000,
-                    "y": 1000
+                    "x": 1260,
+                    "y": 840
                 },
                 "2": {
                     "data": {
@@ -96,9 +129,81 @@
                     "type": "action",
                     "warnings": {},
                     "x": 980,
-                    "y": 604.5
+                    "y": 560
                 },
-                "3": {
+                "4": {
+                    "data": {
+                        "action": "domain reputation",
+                        "actionType": "investigate",
+                        "advanced": {
+                            "customName": "Source Reputation",
+                            "customNameId": 0,
+                            "join": []
+                        },
+                        "connector": "VirusTotal",
+                        "connectorConfigs": [
+                            "virustotal"
+                        ],
+                        "connectorId": "11f676a4-f3d4-4db0-8587-f4e942c07c7c",
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "source_reputation",
+                        "id": "4",
+                        "parameters": {
+                            "domain": "artifact:*.cef.sourceDnsDomain"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "domain"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "4",
+                    "type": "action",
+                    "warnings": {},
+                    "x": 680,
+                    "y": 540
+                },
+                "5": {
+                    "data": {
+                        "action": "file reputation",
+                        "actionType": "investigate",
+                        "advanced": {
+                            "customName": "Virus Search",
+                            "customNameId": 0,
+                            "join": []
+                        },
+                        "connector": "VirusTotal",
+                        "connectorConfigs": [
+                            "virustotal"
+                        ],
+                        "connectorId": "11f676a4-f3d4-4db0-8587-f4e942c07c7c",
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "virus_search",
+                        "id": "5",
+                        "parameters": {
+                            "hash": "artifact:*.cef.fileHash"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "hash"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "5",
+                    "type": "action",
+                    "warnings": {},
+                    "x": 1300,
+                    "y": 540
+                },
+                "6": {
                     "data": {
                         "advanced": {
                             "join": []
@@ -108,9 +213,9 @@
                             "name": "debug",
                             "repoName": "community"
                         },
-                        "functionId": 1,
-                        "functionName": "debug_1",
-                        "id": "3",
+                        "functionId": 2,
+                        "functionName": "debug_2",
+                        "id": "6",
                         "selectMore": false,
                         "type": "utility",
                         "utilities": {
@@ -263,11 +368,99 @@
                         }
                     },
                     "errors": {},
-                    "id": "3",
+                    "id": "6",
                     "type": "utility",
                     "warnings": {},
-                    "x": 1260,
-                    "y": 780
+                    "x": 700,
+                    "y": 840
+                },
+                "7": {
+                    "data": {
+                        "advanced": {
+                            "customName": "Check Positives",
+                            "customNameId": 0,
+                            "join": []
+                        },
+                        "conditions": [
+                            {
+                                "comparisons": [
+                                    {
+                                        "conditionIndex": 0,
+                                        "op": ">",
+                                        "param": "virus_search:action_result.summary.positives",
+                                        "value": "10"
+                                    }
+                                ],
+                                "conditionIndex": 0,
+                                "customName": "High Positives",
+                                "display": "If",
+                                "logic": "and",
+                                "type": "if"
+                            },
+                            {
+                                "comparisons": [
+                                    {
+                                        "op": "==",
+                                        "param": "",
+                                        "value": ""
+                                    }
+                                ],
+                                "conditionIndex": 1,
+                                "customName": "Low Positives",
+                                "display": "Else",
+                                "logic": "and",
+                                "type": "else"
+                            }
+                        ],
+                        "functionId": 1,
+                        "functionName": "check_positives",
+                        "id": "7",
+                        "type": "decision"
+                    },
+                    "errors": {},
+                    "id": "7",
+                    "type": "decision",
+                    "warnings": {},
+                    "x": 1060,
+                    "y": 700
+                },
+                "8": {
+                    "data": {
+                        "advanced": {
+                            "customName": "Notify SOC Management",
+                            "customNameId": 0,
+                            "join": []
+                        },
+                        "approver": {
+                            "type": "user",
+                            "value": "container_owner"
+                        },
+                        "functionId": 1,
+                        "functionName": "notify_soc_management",
+                        "id": "8",
+                        "message": "A potentially malicious file download has been detected on a local server with IP\naddress {0}. {0}",
+                        "parameters": [
+                            "artifact:*.cef.destinationAddress"
+                        ],
+                        "responseTime": 1,
+                        "responses": [
+                            {
+                                "responseOptions": [
+                                    "Yes",
+                                    "No"
+                                ],
+                                "responsePrompt": " Notify SOC management?",
+                                "responseType": "yes/no"
+                            }
+                        ],
+                        "type": "prompt"
+                    },
+                    "errors": {},
+                    "id": "8",
+                    "type": "prompt",
+                    "warnings": {},
+                    "x": 1060,
+                    "y": 840
                 }
             },
             "notes": ""
@@ -279,7 +472,7 @@
         "schema": "5.0.10",
         "version": "6.0.1.123902"
     },
-    "create_time": "2023-07-13T19:11:39.206298+00:00",
+    "create_time": "2023-07-13T20:40:36.927820+00:00",
     "draft_mode": false,
     "labels": [
         "*"
