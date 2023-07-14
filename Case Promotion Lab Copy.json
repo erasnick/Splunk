@@ -1,0 +1,169 @@
+{
+    "blockly": false,
+    "blockly_xml": "<xml></xml>",
+    "category": "Uncategorized",
+    "coa": {
+        "data": {
+            "description": "",
+            "edges": [
+                {
+                    "id": "port_0_to_port_2",
+                    "sourceNode": "0",
+                    "sourcePort": "0_out",
+                    "targetNode": "2",
+                    "targetPort": "2_in"
+                },
+                {
+                    "id": "port_2_to_port_3",
+                    "sourceNode": "2",
+                    "sourcePort": "2_out",
+                    "targetNode": "3",
+                    "targetPort": "3_in"
+                }
+            ],
+            "hash": "5b264df5863b4941c84c30f96de3792675c5d874",
+            "nodes": {
+                "0": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_start",
+                        "id": "0",
+                        "type": "start"
+                    },
+                    "errors": {},
+                    "id": "0",
+                    "type": "start",
+                    "warnings": {},
+                    "x": 1000,
+                    "y": 419.99999999999994
+                },
+                "1": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_finish",
+                        "id": "1",
+                        "type": "end"
+                    },
+                    "errors": {},
+                    "id": "1",
+                    "type": "end",
+                    "warnings": {},
+                    "x": 1000,
+                    "y": 780
+                },
+                "2": {
+                    "data": {
+                        "advanced": {
+                            "customName": "Compose Report",
+                            "customNameId": 0,
+                            "drop_none": true,
+                            "join": []
+                        },
+                        "functionId": 1,
+                        "functionName": "compose_report",
+                        "id": "2",
+                        "parameters": [],
+                        "template": "- **Case link**: - **Event Name**: {1}\n- **Description**: {2}\n- **Source URL**: {3}\n- **Target Server IP**: {4}\n- **Suspicious File Path**: {5}\n- **Reason for promotion**: {6}",
+                        "type": "format"
+                    },
+                    "errors": {},
+                    "id": "2",
+                    "type": "format",
+                    "warnings": {},
+                    "x": 980,
+                    "y": 520
+                },
+                "3": {
+                    "data": {
+                        "advanced": {
+                            "customName": "Incident Report",
+                            "customNameId": 0,
+                            "join": [],
+                            "note": "0: container:url\n1: container:name\n2: container:description\n3: artifact:*.cef.sourceDnsDomain\n4: artifact:*.cef.destinationAddress\n5: artifact:*.cef.filePath\n6: playbook_input:promotion_reason",
+                            "refreshNotableData": true
+                        },
+                        "functionId": 1,
+                        "functionName": "incident_report",
+                        "id": "3",
+                        "selectMore": false,
+                        "tab": "apis",
+                        "type": "utility",
+                        "utilities": {
+                            "promote": {
+                                "description": "",
+                                "fields": [
+                                    {
+                                        "choices": [
+                                            "NIST 800-61",
+                                            "Response Template 1",
+                                            "Account Compromise",
+                                            "Data Breach",
+                                            "Network Indicator Enrichment",
+                                            "Risk Investigation",
+                                            "Risk Response",
+                                            "Self-Replicating Malware",
+                                            "Suspicious Email",
+                                            "Vulnerability Disclosure"
+                                        ],
+                                        "description": "",
+                                        "label": "template",
+                                        "name": "template",
+                                        "placeholder": "Select a template",
+                                        "renderType": "dropdown",
+                                        "required": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "container",
+                                        "required": false
+                                    },
+                                    {
+                                        "hidden": true,
+                                        "name": "trace",
+                                        "required": false
+                                    }
+                                ],
+                                "label": "promote to case",
+                                "name": "promote",
+                                "refreshNotableData": true
+                            }
+                        },
+                        "utilityType": "api",
+                        "values": {
+                            "promote": {
+                                "_internal": [
+                                    "container",
+                                    "trace"
+                                ],
+                                "template": "Data Breach"
+                            }
+                        }
+                    },
+                    "errors": {},
+                    "id": "3",
+                    "type": "utility",
+                    "warnings": {},
+                    "x": 980,
+                    "y": 640
+                }
+            },
+            "notes": ""
+        },
+        "input_spec": null,
+        "output_spec": null,
+        "playbook_type": "automation",
+        "python_version": "3",
+        "schema": "5.0.10",
+        "version": "6.0.1.123902"
+    },
+    "create_time": "2023-07-14T15:51:44.268448+00:00",
+    "draft_mode": false,
+    "labels": [
+        "*"
+    ],
+    "tags": []
+}
